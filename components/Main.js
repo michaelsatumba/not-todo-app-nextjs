@@ -3,22 +3,16 @@ import React, { useState } from 'react';
 import Third from '../components/third';
 
 function Main() {
+	const [items, setItems] = useState([]);
 	const [notTodo, setNotTodo] = useState('');
 
-	const list = ['Watch TV', 'hello'];
+	// const list = ['Watch TV', 'hello'];
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		list.unshift(notTodo);
-		alert(list);
-		// alert(list);
-		// return (
-		// 	<ul>
-		// 		{list.map((notTodo) => (
-		// 			<li>{notTodo}</li>
-		// 		))}
-		// 	</ul>
-		// );
+		// items.unshift(notTodo);
+		// console.log(items);
+		setItems((arr) => [...arr, arr]);
 	};
 
 	return (
@@ -47,12 +41,9 @@ function Main() {
 			{/* second */}
 			<div className="flex flex-col border-none bg-slate-700 px-12 py-2 text-white">
 				<div className="flex space-x-3 border-b-2">
-					<ul>
-						{list.map(function (item, index) {
-							return <li key={index}>{item}</li>;
-						})}
-					</ul>
-
+					{items.map((e) => (
+						<div>{e}</div>
+					))}
 					{/* ugh want to give up! */}
 					{/* <div>
 						<input type="checkbox" className="" />
