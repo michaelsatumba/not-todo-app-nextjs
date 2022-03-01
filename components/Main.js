@@ -12,7 +12,17 @@ function Main() {
 		event.preventDefault();
 		// items.unshift(notTodo);
 		// console.log(items);
-		setItems((arr) => [...arr, arr]);
+		// console.log(notTodo);
+		setItems(() => [...items, notTodo]); //idk what this does
+		// console.log(items);
+	};
+
+	const deleteItem = (i) => {
+		// setItems(() => [...items, notTodo]);
+		console.log('delete ' + i);
+		const arr = items.filter((item, itemIndex) => itemIndex !== i);
+		setItems(arr);
+		// console.log(arr);
 	};
 
 	return (
@@ -31,7 +41,7 @@ function Main() {
 								placeholder="Create a new not-to-do..."
 								className="bg-slate-700 text-white"
 								value={notTodo}
-								onChange={(element) => setNotTodo(element.target.value)}
+								onChange={(e) => setNotTodo(e.target.value)}
 							/>
 						</div>
 					</div>
@@ -41,9 +51,14 @@ function Main() {
 			{/* second */}
 			<div className="flex flex-col border-none bg-slate-700 px-12 py-2 text-white">
 				<div className="flex space-x-3 border-b-2">
-					{items.map((e) => (
-						<div>{e}</div>
-					))}
+					<ul>
+						{items.map((e, y) => (
+							<li key={y}>
+								{e} <button onClick={() => deleteItem(y)}>delete</button>
+							</li>
+						))}
+					</ul>
+
 					{/* ugh want to give up! */}
 					{/* <div>
 						<input type="checkbox" className="" />
