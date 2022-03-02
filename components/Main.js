@@ -15,6 +15,7 @@ function Main() {
 		// console.log(notTodo);
 		setItems(() => [...items, notTodo]); //idk what this does
 		// console.log(items);
+		setNotTodo('');
 	};
 
 	const deleteItem = (i) => {
@@ -28,7 +29,7 @@ function Main() {
 	return (
 		<div className="grid justify-items-center">
 			{/* first */}
-			<div className="absolute top-24 left-14 border-none bg-slate-700 px-10">
+			<div className="absolute top-24 border-none bg-slate-700 px-10">
 				<form onSubmit={handleSubmit}>
 					<div className="flex space-x-3">
 						<div>
