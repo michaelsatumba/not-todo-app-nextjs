@@ -27,13 +27,17 @@ function Main() {
 		// console.log(arr);
 	};
 
-	const crossOff = () => {
+	const crossOff = (i) => {
 		// console.log('crossOff');
-		if (isCross) {
-			setCross(false);
-		} else {
-			setCross(true);
-		}
+		console.log('crossOff ' + i);
+		const arr = items.filter((item, itemIndex) => itemIndex !== i);
+		setCross(true);
+
+		// if (isCross) {
+		// 	setCross(false);
+		// } else {
+		// 	setCross(true);
+		// }
 	};
 
 	return (
@@ -70,7 +74,11 @@ function Main() {
 								}`}
 								key={y}
 							>
-								<input type="checkbox" className="" onClick={crossOff} />
+								<input
+									type="checkbox"
+									className=""
+									onClick={() => crossOff(y)}
+								/>
 								{e} <button onClick={() => deleteItem(y)}>X</button>
 							</li>
 						))}
