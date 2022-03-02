@@ -5,7 +5,7 @@ import Third from '../components/third';
 function Main() {
 	const [items, setItems] = useState([]);
 	const [notTodo, setNotTodo] = useState('');
-	const [isCross, setCross] = useState(true);
+	const [isCross, setCross] = useState(false);
 
 	// const list = ['Watch TV', 'hello'];
 
@@ -66,7 +66,7 @@ function Main() {
 						{items.map((e, y) => (
 							<li
 								className={`text-green-500 ${
-									isCross ? 'bg-white' : 'bg-red-500'
+									isCross ? 'line-through' : 'null'
 								}`}
 								key={y}
 							>
