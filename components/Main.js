@@ -5,6 +5,7 @@ import Third from '../components/third';
 function Main() {
 	const [items, setItems] = useState([]);
 	const [notTodo, setNotTodo] = useState('');
+	const [isCross, setCross] = useState(true);
 
 	// const list = ['Watch TV', 'hello'];
 
@@ -24,6 +25,15 @@ function Main() {
 		const arr = items.filter((item, itemIndex) => itemIndex !== i);
 		setItems(arr);
 		// console.log(arr);
+	};
+
+	const crossOff = () => {
+		// console.log('crossOff');
+		if (isCross) {
+			setCross(false);
+		} else {
+			setCross(true);
+		}
 	};
 
 	return (
@@ -54,8 +64,14 @@ function Main() {
 				<div className="flex space-x-3 border-b-2">
 					<ul>
 						{items.map((e, y) => (
-							<li key={y}>
-								{e} <button onClick={() => deleteItem(y)}>delete</button>
+							<li
+								className={`text-green-500 ${
+									isCross ? 'bg-white' : 'bg-red-500'
+								}`}
+								key={y}
+							>
+								<input type="checkbox" className="" onClick={crossOff} />
+								{e} <button onClick={() => deleteItem(y)}>X</button>
 							</li>
 						))}
 					</ul>
