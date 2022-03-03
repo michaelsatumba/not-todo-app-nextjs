@@ -5,7 +5,8 @@ import Third from '../components/third';
 function Main() {
 	const [items, setItems] = useState([]);
 	const [notTodo, setNotTodo] = useState('');
-	const [cross, setCross] = useState(true);
+	// const [cross, setCross] = useState(true);
+	const complete = true ? 'line-through' : 'none';
 
 	// const list = ['Watch TV', 'hello'];
 
@@ -22,33 +23,19 @@ function Main() {
 	const deleteItem = (y) => {
 		// setItems(() => [...items, notTodo]);
 		console.log('delete ' + y);
-		const arr = items.filter((item, itemIndex) => itemIndex != y);
+		const arr = items.filter((item, itemIndex) => itemIndex != y); // deletes y and y is the index
 		setItems(arr);
 		// console.log(arr);
 	};
 
 	const crossOff = (y) => {
-		// console.log('crossOff');
-		console.log('crossOff ' + y);
-		// const arr = items.filter((item, itemIndex) => itemIndex != y);
-		// // setItems(arr);
-		// console.log(arr);
-
-		const lineThrough = items.map((item, itemIndex) => itemIndex != y);
-		// console.log(lineThrough); // prints array of [true, false]
-		// setCross(lineThrough);
-
-		const trueArray = lineThrough.filter((boolean) => boolean === true);
-		console.log(trueArray);
-
-		const falseArray = items.filter((item, itemIndex) => itemIndex != y);
-		// console.log(falseArray); // prints array of [index]
-
-		if (trueArray == true) {
-			setCross(false);
-		} else {
-			setCross(true);
-		}
+		// // console.log('crossOff');
+		// console.log('crossOff ' + y);
+		// const arr2 = items.filter((item, itemIndex) => itemIndex != y);
+		// setItems(arr2);
+		// const temporaryTodos = [...items];
+		// temporaryTodos[y] = !temporaryTodos[y];
+		// setItems(temporaryTodos);
 	};
 
 	return (
@@ -76,13 +63,10 @@ function Main() {
 
 			{/* second */}
 			<div className="flex flex-col border-none bg-slate-700 px-12 py-2 text-white">
-				<div className="flex space-x-3 border-b-2">
-					<ul>
+				<div className="flex border-b-2 ">
+					<ul className="">
 						{items.map((e, y) => (
-							<li
-								className={`text-green-500 ${cross ? 'none' : 'line-through'}`}
-								key={y}
-							>
+							<li className={`space-x-40 text-green-500 ${complete}`} key={y}>
 								<input
 									type="checkbox"
 									className=""
