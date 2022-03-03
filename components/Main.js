@@ -5,7 +5,7 @@ import Third from '../components/third';
 function Main() {
 	const [items, setItems] = useState([]);
 	const [notTodo, setNotTodo] = useState('');
-	const [isCross, setCross] = useState(false);
+	const [cross, setCross] = useState(true);
 
 	// const list = ['Watch TV', 'hello'];
 
@@ -19,25 +19,36 @@ function Main() {
 		setNotTodo('');
 	};
 
-	const deleteItem = (i) => {
+	const deleteItem = (y) => {
 		// setItems(() => [...items, notTodo]);
-		console.log('delete ' + i);
-		const arr = items.filter((item, itemIndex) => itemIndex !== i);
+		console.log('delete ' + y);
+		const arr = items.filter((item, itemIndex) => itemIndex != y);
 		setItems(arr);
 		// console.log(arr);
 	};
 
-	const crossOff = (i) => {
+	const crossOff = (y) => {
 		// console.log('crossOff');
-		console.log('crossOff ' + i);
-		const arr = items.filter((item, itemIndex) => itemIndex !== i);
-		setCross(true);
+		console.log('crossOff ' + y);
+		// const arr = items.filter((item, itemIndex) => itemIndex != y);
+		// // setItems(arr);
+		// console.log(arr);
 
-		// if (isCross) {
-		// 	setCross(false);
-		// } else {
-		// 	setCross(true);
-		// }
+		const lineThrough = items.map((item, itemIndex) => itemIndex != y);
+		// console.log(lineThrough); // prints array of [true, false]
+		// setCross(lineThrough);
+
+		const trueArray = lineThrough.filter((boolean) => boolean === true);
+		console.log(trueArray);
+
+		const falseArray = items.filter((item, itemIndex) => itemIndex != y);
+		// console.log(falseArray); // prints array of [index]
+
+		if (trueArray == true) {
+			setCross(false);
+		} else {
+			setCross(true);
+		}
 	};
 
 	return (
@@ -69,9 +80,7 @@ function Main() {
 					<ul>
 						{items.map((e, y) => (
 							<li
-								className={`text-green-500 ${
-									isCross ? 'line-through' : 'null'
-								}`}
+								className={`text-green-500 ${cross ? 'none' : 'line-through'}`}
 								key={y}
 							>
 								<input
