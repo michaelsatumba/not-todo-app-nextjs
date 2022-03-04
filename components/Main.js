@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Third from '../components/third';
+import Third from '../components/Third';
 import xSymbol from '../public/icon-cross.svg';
 
 function Main() {
