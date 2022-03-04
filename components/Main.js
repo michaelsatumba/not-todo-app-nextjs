@@ -34,7 +34,12 @@ function Main() {
 		const arr2 = items.filter((item, itemIndex) => itemIndex != index);
 		// setItems(arr2);
 
-		setComplete(false);
+		// if (index == 0) {
+		// 	setComplete(false);
+		// } else {
+		// 	setComplete(true);
+		// }
+		// it is targeting if 0 is the index it will cross all items else it will uncross all items
 
 		// if (complete) {
 		// 	setComplete(false);
@@ -73,36 +78,34 @@ function Main() {
 			{/* second */}
 			<div className="flex flex-col border-none bg-slate-700 px-12 py-2 text-white">
 				<div className="border-b-2">
-					<ul className="flex flex-col">
-						{items.map((element, index) => (
-							<li
-								className={`flex flex-row justify-between text-green-500 ${
-									complete ? 'none' : 'line-through'
-								}`}
-								key={index}
+					{items.map((element, index) => (
+						<div
+							className={`flex flex-row justify-between text-green-500 ${
+								complete ? 'none' : 'line-through'
+							}`}
+							key={index}
+						>
+							<input
+								type="checkbox"
+								className="w-5 h-5 place-self-center"
+								onClick={() => crossOff(index)}
+							/>
+							{element}
+							<button
+								className="place-self-center"
+								onClick={() => deleteItem(index)}
 							>
-								<input
-									type="checkbox"
-									className="w-5 h-5 place-self-center"
-									onClick={() => crossOff(index)}
-								/>
-								{element}
-								<button
-									className="place-self-center"
-									onClick={() => deleteItem(index)}
-								>
-									<div className="h-5 w-5 relative">
-										<Image
-											src={xSymbol}
-											alt="xSymbol"
-											objectFit="cover"
-											layout="fill"
-										/>
-									</div>
-								</button>
-							</li>
-						))}
-					</ul>
+								<div className="h-5 w-5 relative">
+									<Image
+										src={xSymbol}
+										alt="xSymbol"
+										objectFit="cover"
+										layout="fill"
+									/>
+								</div>
+							</button>
+						</div>
+					))}
 				</div>
 
 				<div className="flex space-x-24 text-gray-400">
