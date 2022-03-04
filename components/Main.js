@@ -4,12 +4,13 @@ import Third from '../components/third';
 import xSymbol from '../public/icon-cross.svg';
 
 function Main() {
-	const [items, setItems] = useState([]);
+	const [items, setItems] = useState([
+		'Watch Youtube',
+		'Eat Ice Cream',
+		'Procrastinate',
+	]);
 	const [notTodo, setNotTodo] = useState('');
-	// const [cross, setCross] = useState(true);
-	const complete = false ? 'line-through' : 'none';
-
-	// const list = ['Watch TV', 'hello'];
+	const [complete, setComplete] = useState(true);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -21,22 +22,25 @@ function Main() {
 		setNotTodo('');
 	};
 
-	const deleteItem = (y) => {
+	const deleteItem = (index) => {
 		// setItems(() => [...items, notTodo]);
-		console.log('delete ' + y);
-		const arr = items.filter((item, itemIndex) => itemIndex != y); // deletes y and y is the index
+		console.log('delete ' + index);
+		const arr = items.filter((item, itemIndex) => itemIndex != index); // deletes the index
 		setItems(arr);
-		// console.log(arr);
 	};
 
-	const crossOff = (y) => {
-		// // console.log('crossOff');
-		// console.log('crossOff ' + y);
-		// const arr2 = items.filter((item, itemIndex) => itemIndex != y);
+	const crossOff = (index) => {
+		console.log('crossOff ' + index);
+		const arr2 = items.filter((item, itemIndex) => itemIndex != index);
 		// setItems(arr2);
-		// const temporaryTodos = [...items];
-		// temporaryTodos[y] = !temporaryTodos[y];
-		// setItems(temporaryTodos);
+
+		setComplete(false);
+
+		// if (complete) {
+		// 	setComplete(false);
+		// } else {
+		// 	setComplete(true);
+		// }
 	};
 
 	const clear = () => {
@@ -70,20 +74,22 @@ function Main() {
 			<div className="flex flex-col border-none bg-slate-700 px-12 py-2 text-white">
 				<div className="border-b-2">
 					<ul className="flex flex-col">
-						{items.map((e, y) => (
+						{items.map((element, index) => (
 							<li
-								className={`flex flex-row justify-between text-green-500 ${complete}`}
-								key={y}
+								className={`flex flex-row justify-between text-green-500 ${
+									complete ? 'none' : 'line-through'
+								}`}
+								key={index}
 							>
 								<input
 									type="checkbox"
 									className="w-5 h-5 place-self-center"
-									onClick={() => crossOff(y)}
+									onClick={() => crossOff(index)}
 								/>
-								{e}
+								{element}
 								<button
 									className="place-self-center"
-									onClick={() => deleteItem(y)}
+									onClick={() => deleteItem(index)}
 								>
 									<div className="h-5 w-5 relative">
 										<Image
@@ -97,17 +103,6 @@ function Main() {
 							</li>
 						))}
 					</ul>
-
-					{/* ugh want to give up! */}
-					{/* <div>
-						<input type="checkbox" className="" />
-					</div> */}
-					{/* <div>
-						<p>{list[0]}</p>
-					</div> */}
-					{/* <div className="h-5 w-4 relative bg-red-600">
-						<Image src="/icon-cross.svg" layout="fill" />
-					</div> */}
 				</div>
 
 				<div className="flex space-x-24 text-gray-400">
