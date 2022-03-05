@@ -41,11 +41,11 @@ function Main() {
 		// }
 		// it is targeting if 0 is the index it will cross all items else it will uncross all items
 
-		// if (complete) {
-		// 	setComplete(false);
-		// } else {
-		// 	setComplete(true);
-		// }
+		if (complete) {
+			setComplete(false);
+		} else {
+			setComplete(true);
+		}
 	};
 
 	const clear = () => {
@@ -121,3 +121,6 @@ function Main() {
 }
 
 export default Main;
+
+// to do
+// how to apply style to specific item in array
