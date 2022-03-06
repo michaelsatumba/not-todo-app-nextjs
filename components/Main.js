@@ -18,7 +18,6 @@ function Main() {
 		// console.log(items);
 		// console.log(notTodo);
 		setItems(() => [...items, notTodo]); //idk what this does
-		// console.log(items);
 		setNotTodo('');
 	};
 
