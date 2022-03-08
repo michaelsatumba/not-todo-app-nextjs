@@ -9,6 +9,7 @@ function Main() {
 		'Eat Ice Cream',
 		'Procrastinate',
 	]);
+	// try objects
 	const [notTodo, setNotTodo] = useState('');
 	const [complete, setComplete] = useState(true);
 
