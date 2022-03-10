@@ -5,9 +5,8 @@ import xSymbol from '../public/icon-cross.svg';
 
 function Main() {
 	const [items, setItems] = useState([
-		'Watch Youtube',
-		'Eat Ice Cream',
-		'Procrastinate',
+		{ notTodo: 'hello', complete: false },
+		{ notTodo: 'world', complete: false },
 	]);
 	// try objects
 	const [notTodo, setNotTodo] = useState('');
@@ -18,7 +17,12 @@ function Main() {
 		// items.unshift(notTodo);
 		// console.log(items);
 		// console.log(notTodo);
-		setItems(() => [...items, notTodo]); //idk what this does
+		// setItems(() => [...items, notTodo]); //idk what this does
+		// setNotTodo('');
+		const newNotTodo = { notTodo: notTodo, complete: true };
+		setItems((items) => {
+			return [...items, newNotTodo];
+		});
 		setNotTodo('');
 	};
 
@@ -31,20 +35,10 @@ function Main() {
 
 	const crossOff = (index) => {
 		console.log('crossOff ' + index);
-		const arr2 = items.filter((item, itemIndex) => itemIndex != index);
-		// setItems(arr2);
-
-		// if (index == 0) {
-		// 	setComplete(false);
-		// } else {
-		// 	setComplete(true);
-		// }
-		// it is targeting if 0 is the index it will cross all items else it will uncross all items
-
-		if (complete) {
+		const truth = (items[index].complete = true);
+		console.log(truth);
+		if (truth) {
 			setComplete(false);
-		} else {
-			setComplete(true);
 		}
 	};
 
@@ -90,7 +84,7 @@ function Main() {
 								className="w-5 h-5 place-self-center"
 								onClick={() => crossOff(index)}
 							/>
-							{element}
+							{element.notTodo}
 							<button
 								className="place-self-center"
 								onClick={() => deleteItem(index)}
