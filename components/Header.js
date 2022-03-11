@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-function Header() {
+function Header(props) {
 	const [image, setImage] = useState('/bg-mobile-dark.jpg');
 	const [icon, setIcon] = useState('/icon-sun.svg');
+	// const [bgColor, setBgColor] = useState('bg-blue-900');
+	// const bgColor = props.bgColor;
+	// console.log(bgColor);
 
-	const hello = () => {
+	const hello = (props) => {
 		// alert('Hello');
 		if (image == '/bg-mobile-dark.jpg') {
 			setImage('/bg-mobile-light.jpg');
@@ -17,6 +20,12 @@ function Header() {
 			setIcon('/icon-moon.svg');
 		} else {
 			setIcon('/icon-sun.svg');
+		}
+
+		if (bgColor == 'bg-blue-900') {
+			props.setBgColor('bg-white');
+		} else {
+			props.setBgColor('bg-blue-900');
 		}
 	};
 	// make this to change style of page
