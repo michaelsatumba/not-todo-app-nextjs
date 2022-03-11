@@ -1,25 +1,38 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 
 function Header() {
-	function hello() {
-		alert('Hello');
-	}
+	const [image, setImage] = useState('/bg-mobile-dark.jpg');
+	const [icon, setIcon] = useState('/icon-sun.svg');
+
+	const hello = () => {
+		// alert('Hello');
+		if (image == '/bg-mobile-dark.jpg') {
+			setImage('/bg-mobile-light.jpg');
+		} else {
+			setImage('/bg-mobile-dark.jpg');
+		}
+
+		if (icon == '/icon-sun.svg') {
+			setIcon('/icon-moon.svg');
+		} else {
+			setIcon('/icon-sun.svg');
+		}
+	};
 	// make this to change style of page
 	return (
 		<div className="">
-			{/* <img src="./images/bg-mobile-dark.jpg" alt="background-dark" /> */}
 			<div className="h-56 w-screen relative">
 				<Image
-					src="/bg-mobile-dark.jpg"
+					src={image}
 					alt="background-dark"
 					objectFit="cover"
 					layout="fill"
 				/>
 			</div>
 
-			<p className="text-white font-bold absolute top-10 left-5 text-2xl tracking-widest">
-				NOT TO DO
+			<p className="text-white font-bold absolute top-10 left-5 text-2xl tracking-[.35em]">
+				TO DO
 			</p>
 
 			{/* <img
@@ -39,7 +52,7 @@ function Header() {
 </div> */}
 			<div className="h-10 w-10 absolute top-10 right-5">
 				<Image
-					src="/icon-sun.svg"
+					src={icon}
 					alt="sun"
 					objectFit="cover"
 					// width="50"

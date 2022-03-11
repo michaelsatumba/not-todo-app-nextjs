@@ -5,29 +5,28 @@ import xSymbol from '../public/icon-cross.svg';
 
 function Main() {
 	const [items, setItems] = useState([
-		{ notTodo: 'hello', complete: false },
-		{ notTodo: 'world', complete: false },
+		{ Todo: 'hello', complete: false },
+		{ Todo: 'world', complete: false },
 	]);
-	// try objects
-	const [notTodo, setNotTodo] = useState('');
-	const [complete, setComplete] = useState(false);
+	const [Todo, setTodo] = useState('');
+	// const [complete, setComplete] = useState(true);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		// items.unshift(notTodo);
+		// items.unshift(Todo);
 		// console.log(items);
-		// console.log(notTodo);
-		// setItems(() => [...items, notTodo]); //idk what this does
+		// console.log(Todo);
+		// setItems(() => [...items, Todo]); //idk what this does
 		// setNotTodo('');
-		const newNotTodo = { notTodo: notTodo, complete: true };
+		const newTodo = { Todo: Todo, complete: false };
 		setItems((items) => {
-			return [...items, newNotTodo];
+			return [...items, newTodo];
 		});
-		setNotTodo('');
+		setTodo('');
 	};
 
 	const deleteItem = (index) => {
-		// setItems(() => [...items, notTodo]);
+		// setItems(() => [...items, Todo]);
 		console.log('delete ' + index);
 		const arr = items.filter((item, itemIndex) => itemIndex != index); // deletes the index
 		setItems(arr);
@@ -42,12 +41,12 @@ function Main() {
 		// }
 		setItems((items) => {
 			//Filtering out the item that matches
-			const filteredList = items.filter((each, id) => id !== index);
+			const filteredList = items.filter((item, id) => id !== index);
 			//Then returning a new array with the spread out filteredAwayList and readding the updated item status
 			return [
 				...filteredList,
 				{
-					notTodo: items[index].notTodo,
+					Todo: items[index].Todo,
 					complete: !items[index].complete,
 				},
 			];
@@ -61,20 +60,24 @@ function Main() {
 	return (
 		<div className="grid justify-items-center">
 			{/* first */}
-			<div className="absolute top-24 border-none bg-slate-700 px-10">
+			<div className="absolute top-24 border-none bg-slate-700 px-20 py-3">
 				<form onSubmit={handleSubmit}>
 					<div className="flex space-x-3">
 						<div>
-							<input type="checkbox" className="" onClick={handleSubmit} />
+							<input
+								type="checkbox"
+								className="w-6 h-6"
+								onClick={handleSubmit}
+							/>
 						</div>
 
 						<div>
 							<input
 								type="text"
-								placeholder="Create a new not-to-do..."
+								placeholder="Create a new to-do..."
 								className="bg-slate-700 text-white"
-								value={notTodo}
-								onChange={(e) => setNotTodo(e.target.value)}
+								value={Todo}
+								onChange={(e) => setTodo(e.target.value)}
 							/>
 						</div>
 					</div>
@@ -96,7 +99,7 @@ function Main() {
 								className="w-5 h-5 place-self-center"
 								onClick={() => crossOff(index)}
 							/>
-							{element.notTodo}
+							{element.Todo}
 							<button
 								className="place-self-center"
 								onClick={() => deleteItem(index)}
