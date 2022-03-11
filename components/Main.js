@@ -10,7 +10,7 @@ function Main() {
 	]);
 	// try objects
 	const [notTodo, setNotTodo] = useState('');
-	const [complete, setComplete] = useState(true);
+	const [complete, setComplete] = useState(false);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -34,12 +34,24 @@ function Main() {
 	};
 
 	const crossOff = (index) => {
-		console.log('crossOff ' + index);
-		const truth = (items[index].complete = true);
-		console.log(truth);
-		if (truth) {
-			setComplete(false);
-		}
+		// console.log('crossOff ' + index);
+		// const truth = (items[index].complete = true);
+		// console.log(truth);
+		// if (truth) {
+		// 	setComplete(false);
+		// }
+		setItems((items) => {
+			//Filtering out the item that matches
+			const filteredList = items.filter((each, id) => id !== index);
+			//Then returning a new array with the spread out filteredAwayList and readding the updated item status
+			return [
+				...filteredList,
+				{
+					notTodo: items[index].notTodo,
+					complete: !items[index].complete,
+				},
+			];
+		});
 	};
 
 	const clear = () => {
@@ -75,7 +87,7 @@ function Main() {
 					{items.map((element, index) => (
 						<div
 							className={`flex flex-row justify-between text-green-500 ${
-								complete ? 'none' : 'line-through'
+								element.complete ? 'line-through' : 'none'
 							}`}
 							key={index}
 						>
