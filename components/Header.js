@@ -8,7 +8,7 @@ function Header(props) {
 	// const bgColor = props.bgColor;
 	// console.log(bgColor);
 
-	const hello = (props) => {
+	const hello = () => {
 		// alert('Hello');
 		if (image == '/bg-mobile-dark.jpg') {
 			setImage('/bg-mobile-light.jpg');
@@ -22,10 +22,10 @@ function Header(props) {
 			setIcon('/icon-sun.svg');
 		}
 
-		if (bgColor == 'bg-blue-900') {
-			props.setBgColor('bg-white');
+		if (props.color == 'bg-blue-900') {
+			props.onChangeBackground('bg-white');
 		} else {
-			props.setBgColor('bg-blue-900');
+			props.onChangeBackground('bg-blue-900');
 		}
 	};
 	// make this to change style of page

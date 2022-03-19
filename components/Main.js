@@ -32,29 +32,45 @@ function Main() {
 		setItems(arr);
 	};
 
-	const crossOff = (index) => {
-		// console.log('crossOff ' + index);
-		// const truth = (items[index].complete = true);
-		// console.log(truth);
-		// if (truth) {
-		// 	setComplete(false);
-		// }
-		setItems((items) => {
-			//Filtering out the item that matches
-			const filteredList = items.filter((item, id) => id !== index);
-			//Then returning a new array with the spread out filteredAwayList and readding the updated item status
-			return [
-				...filteredList,
-				{
-					Todo: items[index].Todo,
-					complete: !items[index].complete,
-				},
-			];
-		});
-	};
+	// const crossOff = (index) => {
+	// 	console.log('crossOff ' + index);
+	// 	// const truth = (items[index].complete = true);
+	// 	// console.log(truth);
+	// 	// if (truth) {
+	// 	// 	setComplete(false);
+	// 	// }
+	// 	setItems((items) => {
+	// 		//Filtering out the item that matches
+	// 		const filteredList = items.filter((item, id) => id !== index);
+	// 		//Then returning a new array with the spread out filteredAwayList and readding the updated item status
+	// 		console.log(filteredList);
+	// 		return [
+	// 			...filteredList,
+	// 			{
+	// 				Todo: items[index].Todo,
+	// 				complete: !items[index].complete,
+	// 			},
+	// 		];
+	// 	});
+	// };
 
 	const clear = () => {
 		setItems([]); // sets array to empty
+	};
+
+	const crossOff = (index) => {
+		console.log('index', index);
+		setItems((prevList) => {
+			//Then returning a new array with the spread out filteredAwayList and readding the updated item status
+			return [
+				...prevList.slice(0, index),
+				{
+					Todo: prevList[index].Todo,
+					complete: !prevList[index].complete,
+				},
+				...prevList.slice(index + 1, prevList.length),
+			];
+		});
 	};
 
 	return (

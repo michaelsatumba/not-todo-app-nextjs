@@ -4,13 +4,17 @@ import Footer from '../components/Footer';
 import React, { useState } from 'react';
 
 export default function Home(props) {
-	const [bgColor, setBgColor] = useState('bg-blue-900');
+	const [color, setColor] = useState('bg-blue-900');
 	// const bgColor = props.bgColor;
 
+	const onChangeBackground = (newColor) => {
+		setColor(newColor);
+	};
+
 	return (
-		<div className={`h-screen ${bgColor} font-['Josefin_Sans']`}>
+		<div className={`h-screen ${color} font-['Josefin_Sans']`}>
 			{/* Header */}
-			<Header changeBgColor={(bgColor) => setBgColor(bgColor)} />
+			<Header color={color} onChangeBackground={onChangeBackground} />
 			{/* Main */}
 			<Main />
 			{/* Footer */}
@@ -18,3 +22,6 @@ export default function Home(props) {
 		</div>
 	);
 }
+
+// line-through on item onClick of checkbox
+// change background color based on onClick of icon
