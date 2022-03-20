@@ -32,6 +32,14 @@ function Header(props) {
 		} else {
 			props.onChangeBg('bg-slate-700');
 		}
+
+		// alert(props.textColor);
+
+		if (props.textColor == 'text-gray-300') {
+			props.onChangeTextColor('text-gray-900');
+		} else {
+			props.onChangeTextColor('text-gray-300');
+		}
 	};
 	// make this to change style of page
 	return (

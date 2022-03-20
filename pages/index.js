@@ -16,19 +16,27 @@ export default function Home(props) {
 		setbgColor(newColor);
 	};
 
+	const [textColor, setTextColor] = useState('text-gray-300');
+
+	const onChangeTextColor = (newColor) => {
+		setTextColor(newColor);
+	};
+
 	return (
 		<div className={`h-screen ${color} font-['Josefin_Sans']`}>
 			{/* Header */}
 			<Header
 				color={color}
 				onChangeBackground={onChangeBackground}
-				onChangeBg={onChangeBg}
 				bgColor={bgColor}
+				onChangeBg={onChangeBg}
+				textColor={textColor}
+				onChangeTextColor={onChangeTextColor}
 			/>
 			{/* Main */}
-			<Main bgColor={bgColor} />
+			<Main bgColor={bgColor} textColor={textColor} />
 			{/* Footer */}
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 }

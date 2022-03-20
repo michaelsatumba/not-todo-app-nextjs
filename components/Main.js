@@ -54,7 +54,7 @@ function Main(props) {
 		<div className="grid justify-items-center">
 			{/* first */}
 			<div
-				className={`absolute top-24 border-none ${props.bgColor} px-20 py-3`}
+				className={`absolute top-24 border-none ${props.bgColor} px-20 py-3 rounded-lg`}
 			>
 				<form onSubmit={handleSubmit}>
 					<div className="flex space-x-3">
@@ -70,7 +70,7 @@ function Main(props) {
 							<input
 								type="text"
 								placeholder="Create a new to-do..."
-								className={`${props.bgColor}`}
+								className={`${props.bgColor} ${props.textColor}`}
 								value={Todo}
 								onChange={(e) => setTodo(e.target.value)}
 							/>
@@ -80,48 +80,66 @@ function Main(props) {
 			</div>
 
 			{/* second */}
-			<div
-				className={`flex flex-col border-none ${props.bgColor} px-12 py-2 text-white`}
-			>
-				<div className="border-b-2">
-					{items.map((element, index) => (
-						<div
-							className={`flex flex-row justify-between text-gray-300 ${
-								element.complete ? 'line-through' : 'none'
-							}`}
-							key={index}
-						>
-							<input
-								type="checkbox"
-								className="w-5 h-5 place-self-center"
-								onClick={() => crossOff(index)}
-							/>
-							{element.Todo}
-							<button
-								className="place-self-center"
-								onClick={() => deleteItem(index)}
+			<div className="absolute top-44">
+				<div
+					className={` border-none ${props.bgColor} px-12 py-2 text-white rounded-lg`}
+				>
+					<div className="border-b-2">
+						{items.map((element, index) => (
+							<div
+								className={`flex flex-row justify-between ${props.textColor} ${
+									element.complete ? 'line-through' : 'none'
+								}`}
+								key={index}
 							>
-								<div className="h-5 w-5 relative">
-									<Image
-										src={xSymbol}
-										alt="xSymbol"
-										objectFit="cover"
-										layout="fill"
-									/>
-								</div>
-							</button>
-						</div>
-					))}
+								<input
+									type="checkbox"
+									className="w-5 h-5 place-self-center"
+									onClick={() => crossOff(index)}
+								/>
+								{element.Todo}
+								<button
+									className="place-self-center"
+									onClick={() => deleteItem(index)}
+								>
+									<div className="h-5 w-5 relative">
+										<Image
+											src={xSymbol}
+											alt="xSymbol"
+											objectFit="cover"
+											layout="fill"
+										/>
+									</div>
+								</button>
+							</div>
+						))}
+					</div>
+
+					<div className="flex space-x-24 text-gray-400">
+						<p>{items.length} items left</p>
+						<button onClick={clear}>Clear Completed</button>
+					</div>
 				</div>
 
-				<div className="flex space-x-24 text-gray-400">
-					<p>{items.length} items left</p>
-					<button onClick={clear}>Clear Completed</button>
+				<div className="mt-5">
+					<div
+						className={` border ${props.bgColor} flex justify-around text-gray-400`}
+					>
+						<button>
+							<p>All</p>
+						</button>
+						<button>
+							<p>Active</p>
+						</button>
+						<button>
+							<p>Completed</p>
+						</button>
+					</div>
+					<div className="mt-5 text-center text-gray-400">
+						<p>Drag and drop to reorder list</p>
+					</div>
 				</div>
 			</div>
-
-			{/* third */}
-			<Third bgColor={props.bgColor} />
 		</div>
 	);
 }
