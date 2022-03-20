@@ -28,10 +28,12 @@ Users should be able to:
 - Delete items to list.
 - Cross-Off item on list.
 - Change to dark mode.
+- Select certain items.
+- Drag and drop.
 
 ### Screenshot
 
-![]()
+![](<./public/localhost_3000_(iPhone%2012%20Pro).png>)
 
 <!-- Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
@@ -45,20 +47,23 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 <!-- - Solution URL: [Add solution URL here](https://your-solution-url.com) -->
 
-- Live Site URL: [Live Site]()
+- Live Site URL: [Live Site](https://not-todo-app.vercel.app/)
 
 ## My process
 
-TSX, then Tailwind, then JS logic.
+TSX, then Tailwind, then TS logic.
 
 ### Built with
 
 - Next.js
-- Tailwind 
+- Tailwind
 
 ### What I learned
 
 I learned how to use React Hooks such as useState and useEffect.
+How to use absolute positioning using tailwind. Creating another div usually fixes the issue.
+How to pass props from parent to child.
+How to pass props from component to component kind of.
 
 <!-- Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge. -->
 
@@ -66,14 +71,8 @@ I learned how to use React Hooks such as useState and useEffect.
 
 ```html
 <div className="h-56 w-screen relative">
-				<Image
-					src={image}
-					alt="background-dark"
-					objectFit="cover"
-					layout="fill"
-				/>
-			</div>
-
+	<image src="{image}" alt="background-dark" objectFit="cover" layout="fill" />
+</div>
 ```
 
 ```css
@@ -81,26 +80,26 @@ I learned how to use React Hooks such as useState and useEffect.
 ```
 
 ```js
-	const hello = (props) => {
-		// alert('Hello');
-		if (image == '/bg-mobile-dark.jpg') {
-			setImage('/bg-mobile-light.jpg');
-		} else {
-			setImage('/bg-mobile-dark.jpg');
-		}
+const hello = (props) => {
+	// alert('Hello');
+	if (image == '/bg-mobile-dark.jpg') {
+		setImage('/bg-mobile-light.jpg');
+	} else {
+		setImage('/bg-mobile-dark.jpg');
+	}
 
-		if (icon == '/icon-sun.svg') {
-			setIcon('/icon-moon.svg');
-		} else {
-			setIcon('/icon-sun.svg');
-		}
+	if (icon == '/icon-sun.svg') {
+		setIcon('/icon-moon.svg');
+	} else {
+		setIcon('/icon-sun.svg');
+	}
 
-		if (bgColor == 'bg-blue-900') {
-			props.setBgColor('bg-white');
-		} else {
-			props.setBgColor('bg-blue-900');
-		}
-	};
+	if (bgColor == 'bg-blue-900') {
+		props.setBgColor('bg-white');
+	} else {
+		props.setBgColor('bg-blue-900');
+	}
+};
 ```
 
 <!-- If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more. -->
@@ -111,7 +110,9 @@ I learned how to use React Hooks such as useState and useEffect.
 
 <!-- Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect. -->
 
-I still need to implement the cross-off per item logic and dark mode.
+Drag and drop items.
+Change Checkbox.
+Select certain items.
 
 <!-- **Note: Delete this note and the content within this section and replace with your own plans for continued development.** -->
 

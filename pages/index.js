@@ -1,6 +1,5 @@
 import Header from '../components/Header';
 import Main from '../components/Main';
-import Footer from '../components/Footer';
 import React, { useState } from 'react';
 
 export default function Home(props) {
@@ -43,8 +42,6 @@ export default function Home(props) {
 			/>
 			{/* Main */}
 			<Main bgColor={bgColor} textColor={textColor} border={border} />
-			{/* Footer */}
-			{/* <Footer /> */}
 		</div>
 	);
 }

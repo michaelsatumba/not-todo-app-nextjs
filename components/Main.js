@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Third from '../components/Third';
 import xSymbol from '../public/icon-cross.svg';
 
 function Main(props) {
@@ -9,6 +8,9 @@ function Main(props) {
 		{ Todo: 'world', complete: false },
 	]);
 	const [Todo, setTodo] = useState('');
+	const [active, setActive] = useState('');
+	const [active1, setActive1] = useState('');
+	const [active2, setActive2] = useState('');
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -48,6 +50,36 @@ function Main(props) {
 				...prevList.slice(index + 1, prevList.length),
 			];
 		});
+	};
+
+	const activate = () => {
+		// alert('activate');
+
+		if (active == '') {
+			setActive('text-blue-500');
+		} else {
+			setActive('');
+		}
+	};
+
+	const activate1 = () => {
+		// alert('activate');
+
+		if (active1 == '') {
+			setActive1('text-blue-500');
+		} else {
+			setActive1('');
+		}
+	};
+
+	const activate2 = () => {
+		// alert('activate');
+
+		if (active2 == '') {
+			setActive2('text-blue-500');
+		} else {
+			setActive2('');
+		}
 	};
 
 	return (
@@ -125,13 +157,13 @@ function Main(props) {
 					<div
 						className={`${props.border} ${props.bgColor} flex justify-around text-gray-400 text-lg px-5 py-2`}
 					>
-						<button>
+						<button onClick={activate} className={`${active}`}>
 							<p>All</p>
 						</button>
-						<button>
+						<button onClick={activate1} className={`${active1}`}>
 							<p>Active</p>
 						</button>
-						<button>
+						<button onClick={activate2} className={`${active2}`}>
 							<p>Completed</p>
 						</button>
 					</div>
