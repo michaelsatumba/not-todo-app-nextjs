@@ -4,8 +4,10 @@ import xSymbol from '../public/icon-cross.svg';
 
 function Main(props) {
 	const [items, setItems] = useState([
-		{ Todo: 'hello', complete: false },
-		{ Todo: 'world', complete: false },
+		{ Todo: '100 Push-ups', complete: false },
+		{ Todo: '100 Sit-ups', complete: false },
+		{ Todo: '100 Squats', complete: false },
+		{ Todo: 'Run 10k', complete: false },
 	]);
 	const [Todo, setTodo] = useState('');
 	const [active, setActive] = useState('text-blue-500');
@@ -33,7 +35,7 @@ function Main(props) {
 
 	const deleteItem = (index) => {
 		// setItems(() => [...items, Todo]);
-		console.log('delete ' + index);
+		// console.log('delete ' + index);
 		const arr = items.filter((item, itemIndex) => itemIndex != index); // deletes the index
 		setItems(arr);
 	};
@@ -43,7 +45,7 @@ function Main(props) {
 	};
 
 	const crossOff = (index) => {
-		console.log('index', index);
+		// console.log('index', index);
 		setItems((prevList) => {
 			//Then returning a new array with the spread out filteredAwayList and readding the updated item status
 			return [
@@ -62,6 +64,9 @@ function Main(props) {
 
 		if (active == 'text-blue-500') {
 			setActive('');
+			setItems((items) => {
+				return [...items];
+			});
 		} else {
 			setActive('text-blue-500');
 			setActive1('');
@@ -76,12 +81,15 @@ function Main(props) {
 			setActive1('text-blue-500');
 			setActive('');
 			setActive2('');
+			const activeList = items.filter((item) => item.complete == false);
+			// console.log(activeList);
+			setItems(activeList);
 		} else {
 			setActive1('');
 		}
 	};
 
-	const activate2 = (prevList) => {
+	const activate2 = () => {
 		// alert('activate');
 
 		if (active2 == '') {
@@ -89,13 +97,14 @@ function Main(props) {
 			setActive('');
 			setActive1('');
 			const result = items.filter((item) => item.complete == true);
-			// console.log(result);
-			setItems(result);
+			// console.log(result.length);
+			if (result.length == 0) {
+				setItems([...items]);
+			} else {
+				setItems(result);
+			}
 		} else {
 			setActive2('');
-			const result1 = items.filter((item) => item.complete == false);
-			console.log(result1);
-			setItems(result1);
 		}
 	};
 
