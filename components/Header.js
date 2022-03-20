@@ -4,9 +4,6 @@ import React, { useState } from 'react';
 function Header(props) {
 	const [image, setImage] = useState('/bg-mobile-dark.jpg');
 	const [icon, setIcon] = useState('/icon-sun.svg');
-	// const [bgColor, setBgColor] = useState('bg-blue-900');
-	// const bgColor = props.bgColor;
-	// console.log(bgColor);
 
 	const hello = () => {
 		// alert('Hello');
@@ -22,10 +19,18 @@ function Header(props) {
 			setIcon('/icon-sun.svg');
 		}
 
-		if (props.color == 'bg-blue-900') {
+		if (props.color == 'bg-slate-900') {
 			props.onChangeBackground('bg-white');
 		} else {
-			props.onChangeBackground('bg-blue-900');
+			props.onChangeBackground('bg-slate-900');
+		}
+
+		// alert(props.bgColor);
+
+		if (props.bgColor == 'bg-slate-700') {
+			props.onChangeBg('bg-white');
+		} else {
+			props.onChangeBg('bg-slate-700');
 		}
 	};
 	// make this to change style of page

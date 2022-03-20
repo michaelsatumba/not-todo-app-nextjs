@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 import Third from '../components/Third';
 import xSymbol from '../public/icon-cross.svg';
 
-function Main() {
+function Main(props) {
 	const [items, setItems] = useState([
 		{ Todo: 'hello', complete: false },
 		{ Todo: 'world', complete: false },
 	]);
 	const [Todo, setTodo] = useState('');
-	// const [complete, setComplete] = useState(true);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -31,28 +30,6 @@ function Main() {
 		const arr = items.filter((item, itemIndex) => itemIndex != index); // deletes the index
 		setItems(arr);
 	};
-
-	// const crossOff = (index) => {
-	// 	console.log('crossOff ' + index);
-	// 	// const truth = (items[index].complete = true);
-	// 	// console.log(truth);
-	// 	// if (truth) {
-	// 	// 	setComplete(false);
-	// 	// }
-	// 	setItems((items) => {
-	// 		//Filtering out the item that matches
-	// 		const filteredList = items.filter((item, id) => id !== index);
-	// 		//Then returning a new array with the spread out filteredAwayList and readding the updated item status
-	// 		console.log(filteredList);
-	// 		return [
-	// 			...filteredList,
-	// 			{
-	// 				Todo: items[index].Todo,
-	// 				complete: !items[index].complete,
-	// 			},
-	// 		];
-	// 	});
-	// };
 
 	const clear = () => {
 		setItems([]); // sets array to empty
@@ -76,7 +53,9 @@ function Main() {
 	return (
 		<div className="grid justify-items-center">
 			{/* first */}
-			<div className="absolute top-24 border-none bg-slate-700 px-20 py-3">
+			<div
+				className={`absolute top-24 border-none ${props.bgColor} px-20 py-3`}
+			>
 				<form onSubmit={handleSubmit}>
 					<div className="flex space-x-3">
 						<div>
@@ -91,7 +70,7 @@ function Main() {
 							<input
 								type="text"
 								placeholder="Create a new to-do..."
-								className="bg-slate-700 text-white"
+								className={`${props.bgColor}`}
 								value={Todo}
 								onChange={(e) => setTodo(e.target.value)}
 							/>
@@ -101,11 +80,13 @@ function Main() {
 			</div>
 
 			{/* second */}
-			<div className="flex flex-col border-none bg-slate-700 px-12 py-2 text-white">
+			<div
+				className={`flex flex-col border-none ${props.bgColor} px-12 py-2 text-white`}
+			>
 				<div className="border-b-2">
 					{items.map((element, index) => (
 						<div
-							className={`flex flex-row justify-between text-green-500 ${
+							className={`flex flex-row justify-between text-gray-300 ${
 								element.complete ? 'line-through' : 'none'
 							}`}
 							key={index}
@@ -140,7 +121,7 @@ function Main() {
 			</div>
 
 			{/* third */}
-			<Third />
+			<Third bgColor={props.bgColor} />
 		</div>
 	);
 }

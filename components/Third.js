@@ -1,8 +1,10 @@
 import React from 'react';
 
-function Third() {
+function Third(props) {
 	return (
-		<div className="mt-5 w-3/4 border bg-slate-700 flex justify-around text-gray-400">
+		<div
+			className={`mt-5 w-3/4 border ${props.bgColor} flex justify-around text-gray-400`}
+		>
 			<button>
 				<p>All</p>
 			</button>

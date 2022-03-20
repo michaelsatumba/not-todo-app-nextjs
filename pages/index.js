@@ -4,19 +4,29 @@ import Footer from '../components/Footer';
 import React, { useState } from 'react';
 
 export default function Home(props) {
-	const [color, setColor] = useState('bg-blue-900');
-	// const bgColor = props.bgColor;
+	const [color, setColor] = useState('bg-slate-900');
 
 	const onChangeBackground = (newColor) => {
 		setColor(newColor);
 	};
 
+	const [bgColor, setbgColor] = useState('bg-slate-700');
+
+	const onChangeBg = (newColor) => {
+		setbgColor(newColor);
+	};
+
 	return (
 		<div className={`h-screen ${color} font-['Josefin_Sans']`}>
 			{/* Header */}
-			<Header color={color} onChangeBackground={onChangeBackground} />
+			<Header
+				color={color}
+				onChangeBackground={onChangeBackground}
+				onChangeBg={onChangeBg}
+				bgColor={bgColor}
+			/>
 			{/* Main */}
-			<Main />
+			<Main bgColor={bgColor} />
 			{/* Footer */}
 			<Footer />
 		</div>
