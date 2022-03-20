@@ -8,7 +8,7 @@ function Main(props) {
 		{ Todo: 'world', complete: false },
 	]);
 	const [Todo, setTodo] = useState('');
-	const [active, setActive] = useState('');
+	const [active, setActive] = useState('text-blue-500');
 	const [active1, setActive1] = useState('');
 	const [active2, setActive2] = useState('');
 
@@ -55,10 +55,12 @@ function Main(props) {
 	const activate = () => {
 		// alert('activate');
 
-		if (active == '') {
-			setActive('text-blue-500');
-		} else {
+		if (active == 'text-blue-500') {
 			setActive('');
+		} else {
+			setActive('text-blue-500');
+			setActive1('');
+			setActive2('');
 		}
 	};
 
@@ -67,18 +69,28 @@ function Main(props) {
 
 		if (active1 == '') {
 			setActive1('text-blue-500');
+			setActive('');
+			setActive2('');
 		} else {
 			setActive1('');
 		}
 	};
 
-	const activate2 = () => {
+	const activate2 = (prevList) => {
 		// alert('activate');
 
 		if (active2 == '') {
 			setActive2('text-blue-500');
+			setActive('');
+			setActive1('');
+			const result = items.filter((item) => item.complete == true);
+			// console.log(result);
+			setItems(result);
 		} else {
 			setActive2('');
+			const result1 = items.filter((item) => item.complete == false);
+			console.log(result1);
+			setItems(result1);
 		}
 	};
 
