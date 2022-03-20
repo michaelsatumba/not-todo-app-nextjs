@@ -20,9 +20,14 @@ function Main(props) {
 		// setItems(() => [...items, Todo]); //idk what this does
 		// setNotTodo('');
 		const newTodo = { Todo: Todo, complete: false };
-		setItems((items) => {
-			return [...items, newTodo];
-		});
+		if (newTodo.Todo == '') {
+			// alert('hello');
+		} else {
+			setItems((items) => {
+				return [...items, newTodo];
+			});
+		}
+
 		setTodo('');
 	};
 
