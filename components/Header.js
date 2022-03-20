@@ -40,6 +40,12 @@ function Header(props) {
 		} else {
 			props.onChangeTextColor('text-gray-300');
 		}
+
+		if (props.border == 'border-none') {
+			props.onChangeBorder('border');
+		} else {
+			props.onChangeBorder('border-none');
+		}
 	};
 	// make this to change style of page
 	return (

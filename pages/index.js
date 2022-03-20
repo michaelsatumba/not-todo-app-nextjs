@@ -22,6 +22,12 @@ export default function Home(props) {
 		setTextColor(newColor);
 	};
 
+	const [border, setBorder] = useState('border-none');
+
+	const onChangeBorder = (newBorder) => {
+		setBorder(newBorder);
+	};
+
 	return (
 		<div className={`h-screen ${color} font-['Josefin_Sans']`}>
 			{/* Header */}
@@ -32,9 +38,11 @@ export default function Home(props) {
 				onChangeBg={onChangeBg}
 				textColor={textColor}
 				onChangeTextColor={onChangeTextColor}
+				border={border}
+				onChangeBorder={onChangeBorder}
 			/>
 			{/* Main */}
-			<Main bgColor={bgColor} textColor={textColor} />
+			<Main bgColor={bgColor} textColor={textColor} border={border} />
 			{/* Footer */}
 			{/* <Footer /> */}
 		</div>

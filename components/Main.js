@@ -82,7 +82,7 @@ function Main(props) {
 			{/* second */}
 			<div className="absolute top-44">
 				<div
-					className={` border-none ${props.bgColor} px-12 py-2 text-white rounded-lg`}
+					className={`${props.border} border-gray-200 ${props.bgColor} px-12 py-2 text-white rounded-lg`}
 				>
 					<div className="border-b-2">
 						{items.map((element, index) => (
@@ -123,7 +123,7 @@ function Main(props) {
 
 				<div className="mt-5">
 					<div
-						className={` border ${props.bgColor} flex justify-around text-gray-400`}
+						className={`${props.border} ${props.bgColor} flex justify-around text-gray-400 text-lg px-5 py-2`}
 					>
 						<button>
 							<p>All</p>
