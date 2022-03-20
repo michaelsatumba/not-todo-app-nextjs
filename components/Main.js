@@ -106,20 +106,17 @@ function Main(props) {
 				className={`absolute top-24 border-none ${props.bgColor} px-20 py-3 rounded-lg`}
 			>
 				<form onSubmit={handleSubmit}>
-					<div className="flex space-x-3">
-						<div>
-							<input
-								type="checkbox"
-								className="w-6 h-6"
-								onClick={handleSubmit}
-							/>
-						</div>
-
+					<div className="flex">
+						<input
+							type="checkbox"
+							className="mt-2 w-6 h-6 rounded-full"
+							onClick={handleSubmit}
+						/>
 						<div>
 							<input
 								type="text"
 								placeholder="Create a new to-do..."
-								className={`${props.bgColor} ${props.textColor}`}
+								className={`border-none ${props.bgColor} ${props.textColor}`}
 								value={Todo}
 								onChange={(e) => setTodo(e.target.value)}
 							/>
@@ -143,7 +140,7 @@ function Main(props) {
 							>
 								<input
 									type="checkbox"
-									className="w-5 h-5 place-self-center"
+									className="w-5 h-5 place-self-center rounded-full bg-gradient-radial from-purple-500 via-pink-500 to-red-500"
 									onClick={() => crossOff(index)}
 								/>
 								{element.Todo}
