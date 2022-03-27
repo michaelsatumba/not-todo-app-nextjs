@@ -206,4 +206,4 @@ function Main(props) {
 export default Main;
 
 // to do
-// how to apply style to specific item in array
+// drag and drop
