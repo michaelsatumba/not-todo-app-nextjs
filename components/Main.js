@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import xSymbol from '../public/icon-cross.svg';
 
 function Main(props) {
@@ -10,20 +10,17 @@ function Main(props) {
 		{ Todo: 'Run 10k', complete: false },
 	]);
 	const [Todo, setTodo] = useState('');
-	const [active, setActive] = useState('text-blue-500');
-	const [active1, setActive1] = useState('');
-	const [active2, setActive2] = useState('');
+	// const [active, setActive] = useState('text-blue-500');
+	// const [active1, setActive1] = useState('');
+	// const [active2, setActive2] = useState('');
+
+	const [display, setDisplay] = useState(items); //<-- this is the filtered array for mapping onto UI display based on displayType
+	const [displayType, setDisplayType] = useState('ALL'); //<-- either "ALL" / true (for complete) / false (for active)
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		// items.unshift(Todo);
-		// console.log(items);
-		// console.log(Todo);
-		// setItems(() => [...items, Todo]); //idk what this does
-		// setNotTodo('');
 		const newTodo = { Todo: Todo, complete: false };
 		if (newTodo.Todo == '') {
-			// alert('hello');
 		} else {
 			setItems((items) => {
 				return [...items, newTodo];
@@ -34,8 +31,6 @@ function Main(props) {
 	};
 
 	const deleteItem = (index) => {
-		// setItems(() => [...items, Todo]);
-		// console.log('delete ' + index);
 		const arr = items.filter((item, itemIndex) => itemIndex != index); // deletes the index
 		setItems(arr);
 	};
@@ -59,54 +54,63 @@ function Main(props) {
 		});
 	};
 
-	const activate = () => {
-		// alert('activate');
+	// const activate = () => {
+	// 	// alert('activate');
 
-		if (active == 'text-blue-500') {
-			setActive('');
-			setItems((items) => {
-				return [...items];
-			});
+	// 	if (active == 'text-blue-500') {
+	// 		setActive('');
+	// 		setItems((items) => {
+	// 			return [...items];
+	// 		});
+	// 	} else {
+	// 		setActive('text-blue-500');
+	// 		setActive1('');
+	// 		setActive2('');
+	// 	}
+	// };
+
+	// const activate1 = () => {
+	// 	// alert('activate');
+
+	// 	if (active1 == '') {
+	// 		setActive1('text-blue-500');
+	// 		setActive('');
+	// 		setActive2('');
+	// 		const activeList = items.filter((item) => item.complete == false);
+	// 		// console.log(activeList);
+	// 		setItems(activeList);
+	// 	} else {
+	// 		setActive1('');
+	// 	}
+	// };
+
+	// const activate2 = () => {
+	// 	// alert('activate');
+
+	// 	if (active2 == '') {
+	// 		setActive2('text-blue-500');
+	// 		setActive('');
+	// 		setActive1('');
+	// 		const result = items.filter((item) => item.complete == true);
+	// 		// console.log(result.length);
+	// 		if (result.length == 0) {
+	// 			setItems([...items]);
+	// 		} else {
+	// 			setItems(result);
+	// 		}
+	// 	} else {
+	// 		setActive2('');
+	// 	}
+	// };
+
+	useEffect(() => {
+		if (displayType === 'ALL') {
+			return setDisplay(items);
 		} else {
-			setActive('text-blue-500');
-			setActive1('');
-			setActive2('');
+			// if not displayType === "ALL", filter accordingly
+			return setDisplay(items.filter((each) => each.complete === displayType));
 		}
-	};
-
-	const activate1 = () => {
-		// alert('activate');
-
-		if (active1 == '') {
-			setActive1('text-blue-500');
-			setActive('');
-			setActive2('');
-			const activeList = items.filter((item) => item.complete == false);
-			// console.log(activeList);
-			setItems(activeList);
-		} else {
-			setActive1('');
-		}
-	};
-
-	const activate2 = () => {
-		// alert('activate');
-
-		if (active2 == '') {
-			setActive2('text-blue-500');
-			setActive('');
-			setActive1('');
-			const result = items.filter((item) => item.complete == true);
-			// console.log(result.length);
-			if (result.length == 0) {
-				setItems([...items]);
-			} else {
-				setItems(result);
-			}
-		} else {
-			setActive2('');
-		}
-	};
+	}, [displayType, items]);
 
 	return (
 		<div className="grid justify-items-center">
@@ -140,7 +144,7 @@ function Main(props) {
 					className={`${props.border} border-gray-200 ${props.bgColor} px-12 py-2 text-white rounded-lg`}
 				>
 					<div className="border-b-2">
-						{items.map((element, index) => (
+						{display.map((element, index) => (
 							<div
 								className={`flex flex-row justify-between ${props.textColor} ${
 									element.complete ? 'line-through' : 'none'
@@ -180,13 +184,13 @@ function Main(props) {
 					<div
 						className={`${props.border} ${props.bgColor} flex justify-around text-gray-400 text-lg px-5 py-2`}
 					>
-						<button onClick={activate} className={`${active}`}>
+						<button onClick={() => setDisplayType('ALL')}>
 							<p>All</p>
 						</button>
-						<button onClick={activate1} className={`${active1}`}>
+						<button onClick={() => setDisplayType(false)}>
 							<p>Active</p>
 						</button>
-						<button onClick={activate2} className={`${active2}`}>
+						<button onClick={() => setDisplayType(true)}>
 							<p>Completed</p>
 						</button>
 					</div>
