@@ -17,6 +17,10 @@ function Main(props) {
 	const [display, setDisplay] = useState(items); //<-- this is the filtered array for mapping onto UI display based on displayType
 	const [displayType, setDisplayType] = useState('ALL'); //<-- either "ALL" / true (for complete) / false (for active)
 
+	const [allButton, setAllButton] = useState('text-blue-500');
+	const [activeButton, setActiveButton] = useState('');
+	const [completedButton, setCompletedButton] = useState('');
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const newTodo = { Todo: Todo, complete: false };
@@ -105,12 +109,31 @@ function Main(props) {
 
 	useEffect(() => {
 		if (displayType === 'ALL') {
-			return setDisplay(items);
+			return (
+				setDisplay(items),
+				setAllButton('text-blue-500'),
+				setCompletedButton(''),
+				setActiveButton('')
+			);
 		} else {
-			// if not displayType === "ALL", filter accordingly
-			return setDisplay(items.filter((each) => each.complete === displayType));
+			return (
+				setDisplay(items.filter((each) => each.complete === displayType)),
+				setAllButton('')
+			);
 		}
 	}, [displayType, items]);
+
+	useEffect(() => {
+		if (displayType === true) {
+			setCompletedButton('text-blue-500');
+			setActiveButton('');
+			setAllButton('');
+		} else if (displayType === false) {
+			setActiveButton('text-blue-500');
+			setAllButton('');
+			setCompletedButton('');
+		}
+	});
 
 	return (
 		<div className="grid justify-items-center">
@@ -175,7 +198,7 @@ function Main(props) {
 					</div>
 
 					<div className="flex space-x-24 text-gray-400">
-						<p>{items.length} items left</p>
+						<p>{display.length} items left</p>
 						<button onClick={clear}>Clear Completed</button>
 					</div>
 				</div>
@@ -184,13 +207,22 @@ function Main(props) {
 					<div
 						className={`${props.border} ${props.bgColor} flex justify-around text-gray-400 text-lg px-5 py-2`}
 					>
-						<button onClick={() => setDisplayType('ALL')}>
+						<button
+							onClick={() => setDisplayType('ALL')}
+							className={`${allButton}`}
+						>
 							<p>All</p>
 						</button>
-						<button onClick={() => setDisplayType(false)}>
+						<button
+							onClick={() => setDisplayType(false)}
+							className={`${activeButton}`}
+						>
 							<p>Active</p>
 						</button>
-						<button onClick={() => setDisplayType(true)}>
+						<button
+							onClick={() => setDisplayType(true)}
+							className={`${completedButton}`}
+						>
 							<p>Completed</p>
 						</button>
 					</div>
