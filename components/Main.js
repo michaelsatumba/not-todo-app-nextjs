@@ -178,6 +178,7 @@ function Main(props) {
 									type="checkbox"
 									className="w-5 h-5 place-self-center rounded-full bg-gradient-radial from-purple-500 via-pink-500 to-red-500"
 									onClick={() => crossOff(index)}
+									checked={element.complete}
 								/>
 								{element.Todo}
 								<button
@@ -228,6 +229,7 @@ function Main(props) {
 					</div>
 					<div className="mt-5 text-center text-gray-400">
 						<p>Drag and drop to reorder list</p>
+						{/* {JSON.stringify(items)} */}
 					</div>
 				</div>
 			</div>
