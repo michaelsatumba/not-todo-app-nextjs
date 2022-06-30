@@ -178,7 +178,7 @@ function Main(props) {
 									type="checkbox"
 									className="w-5 h-5 place-self-center rounded-full bg-gradient-radial from-purple-500 via-pink-500 to-red-500"
 									onClick={() => crossOff(index)}
-									checked={element.complete}
+									defaultChecked={element.complete}
 								/>
 								{element.Todo}
 								<button
